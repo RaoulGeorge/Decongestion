@@ -7,7 +7,6 @@ import "./login.scss";
 function Login(props) {
   const onLoginSuccess = obj => {
     props.history.push("details", obj.profileObj);
-    // console.log(obj.profileObj);
   };
   const onLoginFailure = () => {
     console.log("failure");
