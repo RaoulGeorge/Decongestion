@@ -4,7 +4,6 @@ import "./map.scss";
 function Map(props) {
   return (
     <div className="map-container">
-      Map
       <GMap />
     </div>
   );
