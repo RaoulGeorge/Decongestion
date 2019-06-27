@@ -1,7 +1,28 @@
 import React from "react";
+import OAuth from "../../components/oAuth";
+import { withRouter } from "react-router-dom";
 
-function Login() {
-  return <div className="Login">Login</div>;
+import "./login.scss";
+
+function Login(props) {
+  const onLoginSuccess = obj => {
+    props.history.push("details", obj.profileObj);
+    // console.log(obj.profileObj);
+  };
+  const onLoginFailure = () => {
+    console.log("failure");
+  };
+
+  return (
+    <div className="Login">
+      <div className="container">
+        <OAuth
+          onLoginSuccess={onLoginSuccess}
+          onLoginFailure={onLoginFailure}
+        />
+      </div>
+    </div>
+  );
 }
 
-export default Login;
+export default withRouter(Login);
