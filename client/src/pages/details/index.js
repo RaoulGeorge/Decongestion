@@ -1,34 +1,36 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import data from "../../data/bestCase";
+
 import {
   Container,
   Col,
-  Card,
   Button,
   Form,
   FormGroup,
   Label,
   Input,
-  FormText
 } from "reactstrap";
 
 class Details extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.location);
     this.state = {
       email: props.location.state.email,
       name: props.location.state.name,
       Company: "Atlassian",
       Time_Slot: "04.00PM",
       Location: "",
-      Notify: false
+      Notify: false,
+      transport :"car",
+      data : data
     };
     this.handleCompany = this.handleCompany.bind(this);
     this.handleTime_Slot = this.handleTime_Slot.bind(this);
     this.handleNotify = this.handleNotify.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.findMe = this.findMe.bind(this);
+    this.handleTransport = this.handleTransport.bind(this);
   }
 
   findMe = function(e) {
@@ -49,17 +51,22 @@ class Details extends React.Component {
     });
   };
 
-  handleTime_Slot = function(value) {
+  handleTime_Slot = function(event) {
     this.setState({
-      Time_Slot: value ? value : ""
+      Time_Slot: event.target.value ? event.target.value : ""
     });
   };
 
-  handleNotify = function(value) {
+  handleNotify = function(event) {
     this.setState({
-      Notify: value ? value : false
+      Notify: event.target.value ? event.target.value : false
     });
   };
+  handleTransport = function(event){
+    this.setState({
+      transport: event.target.value ? event.target.value : false
+    });
+  }
   onSubmit = function(event) {
     event.preventDefault();
     this.props.history.push("dashboard", this.state);
@@ -119,6 +126,25 @@ class Details extends React.Component {
               </Input>
             </Col>
           </FormGroup>
+          <FormGroup row>
+            <Label for="Transport" sm={2}>
+              Transport
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="select"
+                name="Transport"
+                id="Transport"
+                onChange={this.handleTransport}
+                value={this.state.transport ? this.state.transport : "car"}
+              >
+                <option>car</option>
+                <option>walk</option>
+                <option>bike</option>
+                <option>cab</option>
+              </Input>
+            </Col>
+          </FormGroup>
 
           <FormGroup row>
             <Label for="Time Slot" sm={2}>
@@ -129,7 +155,7 @@ class Details extends React.Component {
                 type="select"
                 name="Time Slot"
                 id="Time_Slot"
-                onSelect={this.handleTime_Slot}
+                onChange={this.handleTime_Slot}
                 value={this.state.Time_Slot ? this.state.Time_Slot : "04.00PM"}
               >
                 <option>04.00PM</option>
