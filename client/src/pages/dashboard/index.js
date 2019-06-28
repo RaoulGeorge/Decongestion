@@ -5,10 +5,10 @@ import "./dashboard.scss";
 
 
 function PlotGraph(cr_data,bi_Data,cab_Data,walk_Data){
-  var carData = cr_data ? [cr_data["0:10"]&&cr_data["0:10"].length,cr_data["10:20"]&&cr_data["10:20"].length,cr_data["20:30"]&&cr_data["20:30"].length,cr_data["30:40"]&&cr_data["30:40"].length,(cr_data["40:50"]&&cr_data["40:50"].length)||0] :[49.9, 71.5, 106.4, 129.2, 144.0];
-  var bikeData = bi_Data ?[bi_Data["0:10"].length,bi_Data["10:20"].length,bi_Data["20:30"].length,bi_Data["30:40"].length,(bi_Data["40:50"]&&bi_Data["40:50"].length)||0] :[83.6, 78.8, 98.5, 93.4];
-  var cabData = cab_Data ? [cab_Data["0:10"].length,cab_Data["10:20"].length,cab_Data["20:30"].length,cab_Data["30:40"].length,(cab_Data["40:50"]&&cab_Data["40:50"].length)||0] :[48.9, 38.8, 39.3, 41.4];
-  var walkData = walk_Data ? [walk_Data["0:10"].length,walk_Data["10:20"].length,walk_Data["20:30"].length,walk_Data["30:40"].length,(walk_Data["40:50"]&&walk_Data["40:50"].length)||0] :[42.4, 33.2, 34.5, 39.7, 52.6]
+ var carData = cr_data ? [cr_data["0:10"]&&cr_data["0:10"].length,(cr_data["10:20"]&&cr_data["10:20"].length)||0,(cr_data["20:30"]&&cr_data["20:30"].length)||0,(cr_data["30:40"]&&cr_data["30:40"].length)||0,(cr_data["40:50"]&&cr_data["40:50"].length)||0] :[49.9, 71.5, 106.4, 129.2, 144.0];
+  var bikeData = bi_Data ?[(bi_Data["0:10"]&&bi_Data["0:10"].length)||0,(bi_Data["10:20"]&&bi_Data["10:20"].length)||0,(bi_Data["20:30"]&&bi_Data["20:30"].length)||0,(bi_Data["30:40"]&&bi_Data["30:40"].length)||0,(bi_Data["40:50"]&&bi_Data["40:50"].length)||0] :[83.6, 78.8, 98.5, 93.4];
+  var cabData = cab_Data ? [(cab_Data["0:10"]&&cab_Data["0:10"].length)||0,(cab_Data["10:20"]&&cab_Data["10:20"].length)||0,(cab_Data["20:30"]&&cab_Data["20:30"].length)||0,(cab_Data["30:40"]&&cab_Data["30:40"].length)||0,(cab_Data["40:50"]&&cab_Data["40:50"].length)||0] :[48.9, 38.8, 39.3, 41.4];
+  var walkData = walk_Data ? [(walk_Data["0:10"]&&walk_Data["0:10"].length)||0,(walk_Data["10:20"]&&walk_Data["10:20"].length)||0,(walk_Data["20:30"]&&walk_Data["20:30"].length)||0,(walk_Data["30:40"]&&walk_Data["30:40"].length)||0,(walk_Data["40:50"]&&walk_Data["40:50"].length)||0] :[42.4, 33.2, 34.5, 39.7, 52.6];
 window.Highcharts.chart('graphContainer', {
     chart: {
         type: 'column'
