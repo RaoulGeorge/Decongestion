@@ -9,7 +9,7 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
+  Input
 } from "reactstrap";
 
 class Details extends React.Component {
@@ -22,8 +22,8 @@ class Details extends React.Component {
       Time_Slot: "04.00PM",
       Location: "",
       Notify: false,
-      transport :"car",
-      data : data
+      transport: "car",
+      data: data
     };
     this.handleCompany = this.handleCompany.bind(this);
     this.handleTime_Slot = this.handleTime_Slot.bind(this);
@@ -62,11 +62,11 @@ class Details extends React.Component {
       Notify: event.target.value ? event.target.value : false
     });
   };
-  handleTransport = function(event){
+  handleTransport = function(event) {
     this.setState({
       transport: event.target.value ? event.target.value : false
     });
-  }
+  };
   onSubmit = function(event) {
     event.preventDefault();
     this.props.history.push("dashboard", this.state);
@@ -168,7 +168,8 @@ class Details extends React.Component {
           </FormGroup>
           <FormGroup row>
             <Label for="Location" sm={2}>
-              Location
+              Location {this.state.Location.lat}{" "}
+              {this.state.Location.lat && ","} {this.state.Location.lng}
             </Label>
             <Col sm={10}>
               <button id="find-me" onClick={this.findMe}>
