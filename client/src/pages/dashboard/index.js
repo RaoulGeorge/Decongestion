@@ -8,7 +8,12 @@ function Dashboard(props) {
   function getTotal() {
     return props.location.state.data.length;
   }
-  function getPeopleBetWeenSlot(startTime, startDuration, Endduration) {
+  function getPeopleBetWeenSlot(
+    startTime,
+    startDuration,
+    Endduration,
+    reduceTotal = false
+  ) {
     var tempArray = [],
       totalLength,
       FilterLength;
@@ -24,7 +29,7 @@ function Dashboard(props) {
     });
 
     dataArray[startDuration + ":" + Endduration] = tempArray;
-    stateData = mapData;
+    if (reduceTotal) stateData = mapData;
     FilterLength = totalLength - mapData.length;
     return { FilterLength, totalLength };
   }
@@ -51,31 +56,31 @@ function Dashboard(props) {
               <th scope="row">1</th>
               <td>4:00 to 4:10</td>
               <td>{getPeopleBetWeenSlot(4, 0, 10).FilterLength}</td>
-              <td>{getPeopleBetWeenSlot(4, 0, 10).totalLength}</td>
+              <td>{getPeopleBetWeenSlot(4, 0, 10, true).totalLength}</td>
             </tr>
             <tr onClick={() => showGraph(10, 20)}>
               <th scope="row">2</th>
               <td>4:10 to 4:20</td>
               <td>{getPeopleBetWeenSlot(4, 10, 20).FilterLength}</td>
-              <td>{getPeopleBetWeenSlot(4, 10, 20).totalLength}</td>
+              <td>{getPeopleBetWeenSlot(4, 10, 20, true).totalLength}</td>
             </tr>
             <tr onClick={() => showGraph(20, 30)}>
               <th scope="row">3</th>
               <td>4:20 to 4:30</td>
               <td>{getPeopleBetWeenSlot(4, 20, 30).FilterLength}</td>
-              <td>{getPeopleBetWeenSlot(4, 20, 30).totalLength}</td>
+              <td>{getPeopleBetWeenSlot(4, 20, 30, true).totalLength}</td>
             </tr>
             <tr onClick={() => showGraph(30, 40)}>
               <th scope="row">4</th>
               <td>4:30 to 4:40</td>
               <td>{getPeopleBetWeenSlot(4, 30, 40).FilterLength}</td>
-              <td>{getPeopleBetWeenSlot(4, 30, 40).totalLength}</td>
+              <td>{getPeopleBetWeenSlot(4, 30, 40, true).totalLength}</td>
             </tr>
             <tr onClick={() => showGraph(40, 50)}>
               <th scope="row">5</th>
               <td>4:40 to 4:50</td>
               <td>{getPeopleBetWeenSlot(4, 40, 50).FilterLength}</td>
-              <td>{getPeopleBetWeenSlot(4, 40, 50).totalLength}</td>
+              <td>{getPeopleBetWeenSlot(4, 40, 50, true).totalLength}</td>
             </tr>
           </tbody>
         </Table>
