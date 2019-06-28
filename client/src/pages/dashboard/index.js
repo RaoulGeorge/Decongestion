@@ -1,7 +1,7 @@
 import React from "react";
 import Map from "./../map";
 import { Card, Table, Button, Container, Row, Col } from "reactstrap";
-
+import "./dashboard.scss";
 function Dashboard(props) {
   var dataArray = [];
   let stateData = props.location.state.data;

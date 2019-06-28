@@ -11,7 +11,7 @@ import {
   Label,
   Input
 } from "reactstrap";
-
+import "./details.scss";
 class Details extends React.Component {
   constructor(props) {
     super(props);
@@ -76,128 +76,132 @@ class Details extends React.Component {
     var stateValue = this.props.location.state;
 
     return (
-      <Container>
-        <h1> Details Form </h1>
-        <Form onSubmit={this.onSubmit}>
-          <FormGroup row>
-            <Label for="Email" sm={2}>
-              Email
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="email"
-                name="email"
-                id="exampleEmail"
-                value={stateValue.email}
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="NAME" sm={2}>
-              NAME
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="TEXT"
-                name="name"
-                id="name"
-                value={stateValue.name}
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Label for="Company" sm={2}>
-              Company
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="select"
-                name="Company"
-                id="Company"
-                onChange={this.handleCompany}
-                value={this.state.Company ? this.state.Company : "Shell"}
-              >
-                <option>Atlassian</option>
-                <option>Shell</option>
-                <option>HoneyWell</option>
-                <option>Accenture</option>
-                <option>Inmobi</option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="Transport" sm={2}>
-              Transport
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="select"
-                name="Transport"
-                id="Transport"
-                onChange={this.handleTransport}
-                value={this.state.transport ? this.state.transport : "car"}
-              >
-                <option>car</option>
-                <option>walk</option>
-                <option>bike</option>
-                <option>cab</option>
-              </Input>
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Label for="Time Slot" sm={2}>
-              Time Slot
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="select"
-                name="Time Slot"
-                id="Time_Slot"
-                onChange={this.handleTime_Slot}
-                value={this.state.Time_Slot ? this.state.Time_Slot : "04.00PM"}
-              >
-                <option>04.00PM</option>
-                <option>04.10PM</option>
-                <option>04.20PM</option>
-                <option>04.30PM</option>
-                <option>04.40PM</option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="Location" sm={2}>
-              Location {this.state.Location.lat}{" "}
-              {this.state.Location.lat && ","} {this.state.Location.lng}
-            </Label>
-            <Col sm={10}>
-              <button id="find-me" onClick={this.findMe}>
-                Show my location
-              </button>
-              <br />
-            </Col>
-          </FormGroup>
-          <FormGroup check>
-            <Col sm={10}>
-              <Label check>
-                <Input
-                  type="radio"
-                  onSelect={this.handleNotify}
-                  value={this.state.Notify}
-                />{" "}
-                Notify me for Alerts
+      <div className="details-page">
+        <Container>
+          <h1> Details Form </h1>
+          <Form onSubmit={this.onSubmit}>
+            <FormGroup row>
+              <Label for="Email" sm={2}>
+                Email
               </Label>
-            </Col>
-          </FormGroup>
+              <Col sm={10}>
+                <Input
+                  type="email"
+                  name="email"
+                  id="exampleEmail"
+                  value={stateValue.email}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="NAME" sm={2}>
+                NAME
+              </Label>
+              <Col sm={10}>
+                <Input
+                  type="TEXT"
+                  name="name"
+                  id="name"
+                  value={stateValue.name}
+                />
+              </Col>
+            </FormGroup>
 
-          <FormGroup check row>
-            <Col sm={{ size: 10, offset: 2 }}>
-              <Button>Submit</Button>
-            </Col>
-          </FormGroup>
-        </Form>
-      </Container>
+            <FormGroup row>
+              <Label for="Company" sm={2}>
+                Company
+              </Label>
+              <Col sm={10}>
+                <Input
+                  type="select"
+                  name="Company"
+                  id="Company"
+                  onChange={this.handleCompany}
+                  value={this.state.Company ? this.state.Company : "Shell"}
+                >
+                  <option>Atlassian</option>
+                  <option>Shell</option>
+                  <option>HoneyWell</option>
+                  <option>Accenture</option>
+                  <option>Inmobi</option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="Transport" sm={2}>
+                Transport
+              </Label>
+              <Col sm={10}>
+                <Input
+                  type="select"
+                  name="Transport"
+                  id="Transport"
+                  onChange={this.handleTransport}
+                  value={this.state.transport ? this.state.transport : "car"}
+                >
+                  <option>car</option>
+                  <option>walk</option>
+                  <option>bike</option>
+                  <option>cab</option>
+                </Input>
+              </Col>
+            </FormGroup>
+
+            <FormGroup row>
+              <Label for="Time Slot" sm={2}>
+                Time Slot
+              </Label>
+              <Col sm={10}>
+                <Input
+                  type="select"
+                  name="Time Slot"
+                  id="Time_Slot"
+                  onChange={this.handleTime_Slot}
+                  value={
+                    this.state.Time_Slot ? this.state.Time_Slot : "04.00PM"
+                  }
+                >
+                  <option>04.00PM</option>
+                  <option>04.10PM</option>
+                  <option>04.20PM</option>
+                  <option>04.30PM</option>
+                  <option>04.40PM</option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="Location" sm={2}>
+                Location {this.state.Location.lat}{" "}
+                {this.state.Location.lat && ","} {this.state.Location.lng}
+              </Label>
+              <Col sm={10}>
+                <button id="find-me" onClick={this.findMe}>
+                  Show my location
+                </button>
+                <br />
+              </Col>
+            </FormGroup>
+            <FormGroup check>
+              <Col sm={10}>
+                <Label check>
+                  <Input
+                    type="radio"
+                    onSelect={this.handleNotify}
+                    value={this.state.Notify}
+                  />{" "}
+                  Notify me for Alerts
+                </Label>
+              </Col>
+            </FormGroup>
+
+            <FormGroup check row>
+              <Col sm={{ size: 10, offset: 2 }}>
+                <Button>Submit</Button>
+              </Col>
+            </FormGroup>
+          </Form>
+        </Container>
+      </div>
     );
   }
 }
