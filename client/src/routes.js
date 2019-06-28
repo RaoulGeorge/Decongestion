@@ -11,14 +11,12 @@ import DashboardPage from "./pages/dashboard";
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 const Routes = () => (
-  <main>
-    <Switch>
-      <Route exact path="/" component={LoginPage} />
-      <Route path="/details" component={DetailsPage} />
-      <Route path="/map" component={MapPage} />
-      <Route path="/dashboard" component={DashboardPage} />
-    </Switch>
-  </main>
+  <Switch>
+    <Route exact path="/" component={LoginPage} />
+    <Route path="/details" component={DetailsPage} />
+    <Route path="/map" component={MapPage} />
+    <Route path="/dashboard" component={DashboardPage} />
+  </Switch>
 );
 
 export default Routes;

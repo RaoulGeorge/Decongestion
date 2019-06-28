@@ -62,7 +62,7 @@ const displayRoutes = (m, ma, loc) => {
 class GMap extends React.Component {
   static defaultProps = {
     center: AtlassianCoords,
-    zoom: 20
+    zoom: 14
   };
 
   render() {

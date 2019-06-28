@@ -15,6 +15,7 @@ function Login(props) {
   return (
     <div className="Login">
       <div className="container">
+        <header className="header">Decongest</header>
         <OAuth
           onLoginSuccess={onLoginSuccess}
           onLoginFailure={onLoginFailure}
