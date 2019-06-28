@@ -33,7 +33,7 @@ function Dashboard(props) {
   function showGraph() {}
   return (
     <Container>
-      <h1> Dash board </h1>
+      <h1> Dashboard </h1>
       <Card>
         <div className="Dashboard">
           <div className="container">
