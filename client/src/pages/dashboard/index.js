@@ -2,6 +2,73 @@ import React from "react";
 import Map from "./../map";
 import { Card, Table, Button, Container, Row, Col } from "reactstrap";
 import "./dashboard.scss";
+
+
+function PlotGraph(cr_data,bi_Data,cab_Data,walk_Data){
+  var carData = cr_data ? [cr_data["0:10"]&&cr_data["0:10"].length,cr_data["10:20"]&&cr_data["10:20"].length,cr_data["20:30"]&&cr_data["20:30"].length,cr_data["30:40"]&&cr_data["30:40"].length,(cr_data["40:50"]&&cr_data["40:50"].length)||0] :[49.9, 71.5, 106.4, 129.2, 144.0];
+  var bikeData = bi_Data ?[bi_Data["0:10"].length,bi_Data["10:20"].length,bi_Data["20:30"].length,bi_Data["30:40"].length,(bi_Data["40:50"]&&bi_Data["40:50"].length)||0] :[83.6, 78.8, 98.5, 93.4];
+  var cabData = cab_Data ? [cab_Data["0:10"].length,cab_Data["10:20"].length,cab_Data["20:30"].length,cab_Data["30:40"].length,(cab_Data["40:50"]&&cab_Data["40:50"].length)||0] :[48.9, 38.8, 39.3, 41.4];
+  var walkData = walk_Data ? [walk_Data["0:10"].length,walk_Data["10:20"].length,walk_Data["20:30"].length,walk_Data["30:40"].length,(walk_Data["40:50"]&&walk_Data["40:50"].length)||0] :[42.4, 33.2, 34.5, 39.7, 52.6]
+window.Highcharts.chart('graphContainer', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Data Analysis'
+    },
+    xAxis: {
+        categories: [
+            '04:00',
+            '04:10',
+            '04:20',
+            '04:30',
+            '04:40',
+            '04:50',
+        ],
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Numbers '
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    
+    series: [{
+        name: 'car',
+        data:carData
+
+    }, {
+        name: 'bike',
+        data: bikeData
+
+    }, {
+        name: 'cab',
+        data: cabData
+
+    }, {
+        name: 'walk',
+        data: walkData
+
+    }]
+});
+}
+
+
+
 function Dashboard(props) {
   var dataArray = [];
   let stateData = props.location.state.data;
@@ -35,7 +102,46 @@ function Dashboard(props) {
   }
 
   function showGraph(start, end) {
-    console.log(dataArray[start + ":" + end]);
+    
+    var carData =[],bikeData=[],walkData =[],cabData = [];
+    let data = dataArray;
+
+    var keys = Object.keys(data);
+
+     for(var i =0 ;i <keys.length ;i++){
+       console.log(dataArray[keys[i]]);
+       dataArray[keys[i]].forEach(function(element){
+        if(element.transport === "cab"){
+          if(!cabData[keys[i]]){
+            cabData[keys[i]] = []
+          }
+          cabData[keys[i]].push(element);
+            // cabData.push(element);
+        }else if (element.transport === "bike"){
+           if(!bikeData[keys[i]]){
+            bikeData[keys[i]] = []
+          }
+          bikeData[keys[i]].push(element);
+          // bikeData.push(element);
+        }
+        else if(element.transport === "walk"){
+           if(!walkData[keys[i]]){
+            walkData[keys[i]] = []
+          }
+          walkData[keys[i]].push(element);
+          // walkData.push(element)
+        }else if(element.transport === "car"){
+           if(!carData[keys[i]]){
+            carData[keys[i]] = []
+          }
+          carData[keys[i]].push(element);
+          // carData.push(element)
+        }
+       })
+     }
+
+    
+    PlotGraph(carData,bikeData,cabData,walkData);
   }
 
   return (
@@ -87,6 +193,9 @@ function Dashboard(props) {
 
         <div className="map-container">
           <Map loc={props.location.state.Location} />
+        </div>
+        <div id="graphContainer" className="graphContainer">
+            
         </div>
       </Container>
     </div>
