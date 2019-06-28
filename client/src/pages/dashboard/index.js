@@ -4,6 +4,7 @@ import { Card, Table, Button, Container, Row, Col } from "reactstrap";
 
 function Dashboard(props) {
   var dataArray = [];
+  let stateData = props.location.state.data;
   function getTotal() {
     return props.location.state.data.length;
   }
@@ -11,8 +12,8 @@ function Dashboard(props) {
     var tempArray = [],
       totalLength,
       FilterLength;
-    totalLength = props.location.state.data.length;
-    var mapData = props.location.state.data.filter(function(value) {
+    totalLength = stateData.length;
+    var mapData = stateData.filter(function(value) {
       const time = value.Time_Slot.split(".");
       const min = parseInt(time[0]);
       const sec = parseInt(time[1]);
@@ -23,6 +24,7 @@ function Dashboard(props) {
     });
 
     dataArray[startDuration + ":" + Endduration] = tempArray;
+    stateData = mapData;
     FilterLength = totalLength - mapData.length;
     return { FilterLength, totalLength };
   }
@@ -70,7 +72,7 @@ function Dashboard(props) {
               <td>{getPeopleBetWeenSlot(4, 30, 40).totalLength}</td>
             </tr>
             <tr onClick={() => showGraph(40, 50)}>
-              <th scope="row">4</th>
+              <th scope="row">5</th>
               <td>4:40 to 4:50</td>
               <td>{getPeopleBetWeenSlot(4, 40, 50).FilterLength}</td>
               <td>{getPeopleBetWeenSlot(4, 40, 50).totalLength}</td>
