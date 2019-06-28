@@ -73,8 +73,18 @@ class GMap extends React.Component {
         bootstrapURLKeys={{ key: mykey }}
         defaultCenter={this.props.center}
         defaultZoom={this.props.zoom}
-        yesIWantToUseGoogleMapApiInternals
+        yesIWantToUseGoogleMapApiInternals={true}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps, loc)}
+        disableDefaultUI={true}
+        zoomControl={false}
+        scaleControl={false}
+        options={() => {
+          return {
+            zoomControl: false,
+            scaleControl: false,
+            fullscreenControl: false
+          };
+        }}
       />
     );
   }

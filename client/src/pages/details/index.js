@@ -95,7 +95,7 @@ class Details extends React.Component {
             </FormGroup>
             <FormGroup row>
               <Label for="NAME" sm={2}>
-                NAME
+                Name
               </Label>
               <Col sm={10}>
                 <Input
@@ -129,7 +129,7 @@ class Details extends React.Component {
             </FormGroup>
             <FormGroup row>
               <Label for="Transport" sm={2}>
-                Transport
+                Mode of Transport
               </Label>
               <Col sm={10}>
                 <Input
@@ -175,9 +175,14 @@ class Details extends React.Component {
                 {this.state.Location.lat && ","} {this.state.Location.lng}
               </Label>
               <Col sm={10}>
-                <button id="find-me" onClick={this.findMe}>
-                  Show my location
-                </button>
+                <Button
+                  className="show-my-loc"
+                  id="find-me"
+                  onClick={this.findMe}
+                  size="sm"
+                >
+                  Get my location
+                </Button>
                 <br />
               </Col>
             </FormGroup>
@@ -193,10 +198,12 @@ class Details extends React.Component {
                 </Label>
               </Col>
             </FormGroup>
-
+            <hr />
             <FormGroup check row>
               <Col sm={{ size: 10, offset: 2 }}>
-                <Button>Submit</Button>
+                <Button color="primary" size="lg">
+                  Submit
+                </Button>
               </Col>
             </FormGroup>
           </Form>
